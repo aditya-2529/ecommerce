@@ -8,7 +8,7 @@ const cors = require('cors')
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/graphql-demo", {
+mongoose.connect(process.env.DB , {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
