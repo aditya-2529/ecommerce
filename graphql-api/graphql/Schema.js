@@ -43,10 +43,9 @@ const schema = buildSchema(`
     register(username: String!, email: String!, age: String!, password: String!): User
     login(email: String!, password: String!): User
     addToCart(userId: String!, productId: String!, total: Int!): Cart
-    createCart: Cart
+    createCart(userId: String!): Cart
     placeOrder(userId: ID!): Order
     createProduct(name: String!, description: String,price: Float!,category: String!,stock: Int,imageUrl: String): Product
-    setCartToUser(id: String!,cartId: String!): User
   }
 `);
 

@@ -57,25 +57,25 @@ const resolvers = {
       console.error(err);
     }
   },
-  createCart: async() => {
+  createCart: async({userId}) => {
     try{
-      const cart = await Cart.create();
+      const cart = await Cart.create({userId:userId});
       await cart.save();
       return cart;
     } catch(e) {
       console.log(e)
     }
   },
-  setCartToUser: async({id, cartId}) => {
-    try{
-      const user = await User.findByIdAndUpdate(id,{
-        cartId
-      });
-      return user;
-    } catch(e) {
-      console.log(e);
-    }
-  },
+  // setCartToUser: async({id, cartId}) => {
+  //   try{
+  //     const user = await User.findByIdAndUpdate(id,{
+  //       cartId
+  //     });
+  //     return user;
+  //   } catch(e) {
+  //     console.log(e);
+  //   }
+  // },
   createProduct: async ({name, description,price,category,stock,imageUrl}) => {
     try{
       const product = await Product.create({name, description,price,category,stock,imageUrl});
