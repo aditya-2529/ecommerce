@@ -8,7 +8,7 @@ const resolvers = {
   register: async ({username, email, age, password}) => {
     try{
       console.log({username,email,age,password})
-      const user = await User.create({username, email, age, password});
+      const user = await User.create({username:username, email:email, age:age, password:password});
       await user.save();
       return user;
     } catch (err) {
