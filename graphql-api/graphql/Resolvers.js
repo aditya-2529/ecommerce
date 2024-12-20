@@ -7,7 +7,7 @@ const bycrypt = require('bcryptjs')
 const resolvers = {
   register: async ({username, email, age, password}) => {
     try{
-      const user = await User.create({username, email, age, order, password, token});
+      const user = await User.create({username, email, age, password});
       await user.save();
       return user;
     } catch (err) {
