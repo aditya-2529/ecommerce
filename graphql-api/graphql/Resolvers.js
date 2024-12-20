@@ -5,7 +5,7 @@ const Cart = require("../models/Cart")
 const bycrypt = require('bcryptjs')
 
 const resolvers = {
-  register: async ({username, email, age, order, password, token,cartId}) => {
+  register: async ({username, email, age, password}) => {
     try{
       const user = await User.create({username, email, age, order, password, token});
       await user.save();
