@@ -20,18 +20,24 @@ const schema = buildSchema(`
   }
   type Order {
     id: ID!
+    userId: String!
     products: [Product!]
     total: Float!
     createdAt: String!
     status: String
   }
+    type product{
+      product: [Product!]
+      productTotal: String!
+    }
   type Cart {
     id: ID!
     user: String!
-    products: [Product!]
+    products: [product!]
     total: Float!
   }
   type Query {
+    orderNow(productId: String!,userId: String!,total: Int!,createdAt: String!,status: String!): User
     getUsers: [User!]
     getProducts(category: String, page: Int, limit: Int): [Product!]
     getProductById(id: ID!): Product
@@ -42,7 +48,7 @@ const schema = buildSchema(`
   type Mutation {
     register(username: String!, email: String!, age: String!, password: String!): User
     login(email: String!, password: String!): User
-    addToCart(userId: String!, productId: String!, total: Int!): Cart
+    addToCart(id: String!,userId: String!, productId: String!, total: String!,productTotal: String!): Cart
     createCart(userId: String!): Cart
     placeOrder(userId: ID!): Order
     createProduct(name: String!, description: String,price: Float!,category: String!,stock: Int,imageUrl: String): Product

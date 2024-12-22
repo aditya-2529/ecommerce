@@ -30,11 +30,11 @@ const resolvers = {
       console.log(e)
     }
   },
-  addToCart: async ({id, userId,productId,total}) => {
+  addToCart: async ({id, userId,productId,total,productTotal}) => {
     try{
       const product = await Product.findById(productId);
-      const cart = await Cart.findOneAndUpdate(id,{userId:userId,products:product,total})
-      await cart.save();
+      const cart = await Cart.findByIdAndUpdate(id,{userId:userId,products:[{product:product,productTotal}],total})
+      // await cart.save();
       return cart;
     } catch (err) {
       console.error(err);
@@ -54,6 +54,15 @@ const resolvers = {
       return cart;
     } catch (err) {
       console.error(err);
+    }
+  },
+  orderNow: async({productId,userId,total,createdAt,status}) =>{
+    try{
+      const order = Order.create({productId,userId,total,createdAt,status})
+      await order.save();
+      return order;
+    } catch (e) {
+      console.log(e);
     }
   },
   createCart: async({userId}) => {

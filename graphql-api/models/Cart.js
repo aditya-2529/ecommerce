@@ -4,9 +4,16 @@ const cartSchema = new mongoose.Schema({
   user: {
     type: String
   },
-  products: {
-    type: Array
-  },
+  products: [
+    {
+      product: {
+        type: Array
+      },
+      productTotal: {
+        type: String
+      }
+    }
+  ],
   total: {
     type: String
   }
