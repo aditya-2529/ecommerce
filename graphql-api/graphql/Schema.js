@@ -17,6 +17,7 @@ const schema = buildSchema(`
     password: String!
     token: String
     orders: [Order!]
+    cartId: String!
   }
   type Order {
     id: ID!
