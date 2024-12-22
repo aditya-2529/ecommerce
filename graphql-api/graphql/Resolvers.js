@@ -49,9 +49,9 @@ const resolvers = {
       console.log(e)
     }
   },
-  placeOrder: async ({userId,productId,total,createdAt,status}) => {
+  placeOrder: async ({userId,name,total,createdAt,status}) => {
     try {
-      const product = await Product.findById(productId);
+      const product = await Product.findOne({name:name});
       const order = await Order.create({userId:userId,products:product,total:total,createdAt:createdAt,status:status})
       await order.save();
       await User.findByIdAndUpdate(userId,{orders:order});
@@ -78,16 +78,6 @@ const resolvers = {
       console.log(e)
     }
   },
-  // setCartToUser: async({id, cartId}) => {
-  //   try{
-  //     const user = await User.findByIdAndUpdate(id,{
-  //       cartId
-  //     });
-  //     return user;
-  //   } catch(e) {
-  //     console.log(e);
-  //   }
-  // },
   createProduct: async ({name, description,price,category,stock,imageUrl}) => {
     try{
       const product = await Product.create({name, description,price,category,stock,imageUrl});
