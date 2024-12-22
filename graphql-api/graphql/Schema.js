@@ -51,7 +51,7 @@ const schema = buildSchema(`
     login(email: String!, password: String!): User
     addToCart(id: String!,userId: String!, productId: String!, total: String!,productTotal: String!): Cart
     createCart(userId: String!): Cart
-    placeOrder(userId: ID!): Order
+    placeOrder(userId: String!,productId: String!,total: String!,createdAt: String!,status: String!): Order
     createProduct(name: String!, description: String,price: Float!,category: String!,stock: Int,imageUrl: String): Product
   }
 `);
