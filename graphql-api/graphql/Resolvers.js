@@ -42,7 +42,8 @@ const resolvers = {
   },
   getCart: async({userId}) => {
     try{
-      const cart = await Cart.findOne({userId:userId});
+      const cart = await Cart.findOne({user:userId});
+      console.log(cart)
       return cart;
     } catch(e) {
       console.log(e)
